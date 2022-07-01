@@ -3,6 +3,7 @@ using RadialMenuTutorial.Model;
 using RadialMenuTutorial.Pages;
 using RadialMenuTutorial.ViewModels;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace RadialMenuTutorial.Views;
 
@@ -52,19 +53,19 @@ public partial class MenuCustomView : ContentView
 
     private void UpdateViews()
     {
-        const int offset = 90;
+        const int offset = 210;
 
         var sweepingAngle = 360 / ItemSource.Count;
 
         var gridSize = 100;
 
-        var radius = Radius;
+        var radius = 0.2;
 
         double x = 0;
         double y = 0;
 
-        double centerX = DeviceDisplay.Current.MainDisplayInfo.Width / 2 - gridSize;
-        double centerY = DeviceDisplay.Current.MainDisplayInfo.Width / 2 - gridSize;
+        double centerX = 0.5;
+        double centerY = 0.5;
 
         List<Grid> menuItems = new List<Grid>();
 
@@ -111,9 +112,12 @@ public partial class MenuCustomView : ContentView
             label.Text = this.ItemSource[i].Name;
             label.TextColor = Colors.Black;
 
+            AbsoluteLayout.SetLayoutBounds(grid, new Rect(x, y , gridSize, gridSize));
             AbsoluteLayout.SetLayoutBounds(grid, new Rect(x / DeviceDisplay.Current.MainDisplayInfo.Density, y / DeviceDisplay.Current.MainDisplayInfo.Density, gridSize, gridSize));
 
             views.Add(grid);
+
+            Debug.WriteLine($"{x}:{y}");
 
         }
         Content = new AbsoluteLayout

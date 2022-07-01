@@ -1,13 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using RadialMenuTutorial.Model;
 using RadialMenuTutorial.Data;
-using RadialMenuTutorial.Model;
-using System;
-using System.Collections.Generic;
+using RadialMenuTutorial.ViewModels;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RadialMenuTutorial.ViewModels
 {
@@ -25,6 +21,7 @@ namespace RadialMenuTutorial.ViewModels
 
         public ObservableCollection<MenuItemModel> EditMenuOptionsList { get => _editMenuOptions; set => _editMenuOptions = value; }
 
+        private static EditMenuViewModel instance;
         public EditMenuViewModel()
         {
             _mainMenuOptions = MainViewModel.GetInstance().MainMenuOptionsList;
@@ -34,17 +31,11 @@ namespace RadialMenuTutorial.ViewModels
             instance = this;
 
         }
-        [RelayCommand]
-        void DragOption(object obj)
-        {
 
-        }
-
-        private static EditMenuViewModel instance;
 
         public static EditMenuViewModel GetInstance()
         {
-            if (instance == null) 
+            if (instance == null)
                 return new EditMenuViewModel();
             else
                 return instance;
