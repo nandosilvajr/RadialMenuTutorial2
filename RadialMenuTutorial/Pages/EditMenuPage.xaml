@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RadialMenuTutorial.Pages.EditMenuPage"
+             xmlns:viewModels="clr-namespace:RadialMenuTutorial.ViewModels"
+             xmlns:views="clr-namespace:RadialMenuTutorial.Views"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="EditMenuPage">
+    <ContentPage.BindingContext>
+        <viewModels:EditMenuViewModel />
+    </ContentPage.BindingContext>
+    <Grid>
+        <views:MenuCustomView ItemSource="{Binding MainMenuOptionsList}"/>
+
+        <FlexLayout VerticalOptions="EndAndExpand" HeightRequest="100" BindableLayout.ItemsSource="{Binding EditMenuOptions}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout HeightRequest="100">
+                        <Image Source="{Binding Icon}" HeightRequest="60" VerticalOptions="Center" />
+                        <Label Text="{Binding Name}" HorizontalTextAlignment="Center" TextColor="Black" LineBreakMode="WordWrap"/>
+                        <StackLayout.GestureRecognizers>
+                            <DragGestureRecognizer DragStarting="DragGestureRecognizer_DragStarting" CanDrag="True"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+    </Grid>
+</ContentPage>
