@@ -46,7 +46,6 @@ namespace RadialMenuTutorial.ViewModels
             MenuTransactionsService menuTransactionsService = new MenuTransactionsService();
 
             var task = Task.Run( async () => await menuTransactionsService.GetMainMenuListAsync());
-            task.Wait();
 
             if(task.Result != null)
             {

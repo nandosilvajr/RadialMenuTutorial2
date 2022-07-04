@@ -11,8 +11,8 @@
         <viewModels:MainViewModel />
     </ContentPage.BindingContext>
     <Grid>
-        
-    <views:MenuCustomView x:Name="customMenu" ItemSource="{Binding MainMenuOptionsList}">
+
+        <views:MenuCustomView x:Name="customMenu" ItemSource="{Binding MainMenuOptionsList}"/>
         <Button Text="Edit" HeightRequest="50" VerticalOptions="End" Margin="30" Command="{Binding OpenEditMenuPageCommand}"></Button>
     </Grid>    
 </ContentPage>

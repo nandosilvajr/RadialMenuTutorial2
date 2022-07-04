@@ -67,8 +67,6 @@ public partial class MenuCustomView : ContentView
         double centerX = 0.5;
         double centerY = 0.5;
 
-        List<Grid> menuItems = new List<Grid>();
-
         AbsoluteLayout views = new AbsoluteLayout();
 
         for (int i = 0; i < 5; i++)
@@ -113,13 +111,22 @@ public partial class MenuCustomView : ContentView
             label.TextColor = Colors.Black;
 
             AbsoluteLayout.SetLayoutBounds(grid, new Rect(x, y , gridSize, gridSize));
-            AbsoluteLayout.SetLayoutBounds(grid, new Rect(x / DeviceDisplay.Current.MainDisplayInfo.Density, y / DeviceDisplay.Current.MainDisplayInfo.Density, gridSize, gridSize));
+            AbsoluteLayout.SetLayoutFlags(grid, Microsoft.Maui.Layouts.AbsoluteLayoutFlags.PositionProportional);
 
             views.Add(grid);
+
+           
+            
 
             Debug.WriteLine($"{x}:{y}");
 
         }
+
+        views.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width * 0.6;
+        views.HeightRequest  = DeviceDisplay.Current.MainDisplayInfo.Width * 0.6;
+        views.SetLayoutBounds(views, new Rect(0.5, 0.5, gridSize, gridSize));
+        views.SetLayoutFlags(views, Microsoft.Maui.Layouts.AbsoluteLayoutFlags.All);
+
         Content = new AbsoluteLayout
         {
             Children = { views }
